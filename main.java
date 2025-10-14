@@ -6,24 +6,23 @@ public class Main {
         VendingCoffe mesin = new VendingCoffe();
         Bahan bahan = new Bahan();
 
-        System.out.println("===== VENDING COFFEE MACHINE =====");
+        System.out.println("========== VENDING COFFEE MACHINE ==========");
         mesin.tampilkanMenu();
 
-        System.out.print("Pilih jenis kopi: ");
-        String pilihan = sc.nextLine();
+        System.out.print("Pilih menu (masukkan angka): ");
+        int pilihan = sc.nextInt();
 
         int harga = mesin.pilihMenu(pilihan);
         if (harga == 0) return; 
 
         System.out.print("Tambahkan gula? (y/n): ");
-        String tambahGula = sc.nextLine();
+        String tambahGula = sc.next();
         int gula = tambahGula.equalsIgnoreCase("y") ? 10 : 0;
 
         System.out.print("Tambahkan susu? (y/n): ");
-        String tambahSusu = sc.nextLine();
+        String tambahSusu = sc.next();
         int susu = tambahSusu.equalsIgnoreCase("y") ? 50 : 0;
 
-        // Komposisi bahan dasar
         int kopi = 10;
         int air = 200;
 
@@ -33,12 +32,13 @@ public class Main {
 
         if (mesin.lakukanPembayaran(bayar)) {
             if (bahan.gunakanBahan(kopi, gula, susu, air)) {
-                System.out.println(" Membuat kopi " + pilihan + "...");
-                System.out.println("Kopi siap disajikan!");
+                System.out.println(" Membuat kopi " + mesin.getNamaMenu(pilihan) + "...");
+                System.out.println(" Kopi siap disajikan!");
             }
         }
 
         System.out.println();
         bahan.tampilkanStok();
+        sc.close();
     }
 }
